@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-hand: "Caveat", cursive;
+
+  --color-ink-950: #14110e;
+  --color-ink-900: #1c1917;
+  --color-ink-800: #292524;
+  --color-ink-600: #57534e;
+  --color-ink-500: #78716c;
+
+  --color-cream-50: #fffbf3;
+  --color-cream-100: #fdf6ec;
+  --color-cream-200: #f7ead6;
+  --color-cream-300: #efdbc0;
+
+  --color-chili-600: #c1272d;
+  --color-chili-700: #9b1b20;
+  --color-chili-50: #fdf0ee;
+
+  --color-ember-500: #e8632b;
+  --color-ember-600: #cf4f1c;
+
+  --color-gold-400: #f2b33d;
+  --color-gold-500: #e9a319;
+
+  --color-leaf-600: #4a6b3c;
+
+  --animate-float-soft: floatSoft 7s ease-in-out infinite;
+  --animate-steam: steam 3.6s ease-in-out infinite;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-cream-50);
+  color: var(--color-ink-900);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+::selection {
+  background: #c1272d;
+  color: #fff;
+}
+
+/* film grain */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.28'/%3E%3C/svg%3E");
+}
+
+.texture-dots {
+  background-image: radial-gradient(rgba(20, 17, 14, 0.1) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes floatSoft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes steam {
+  0% { transform: translateY(6px); opacity: 0; }
+  30% { opacity: 0.9; }
+  100% { transform: translateY(-14px); opacity: 0; }
+}
+
+:focus-visible {
+  outline: 3px solid #e9a319;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
